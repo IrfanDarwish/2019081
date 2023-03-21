@@ -1,0 +1,18 @@
+#Total and average with getting input from 2 users
+#<ECIE 3101> <SECTION 2> <SEMESTER 1 2022/2023> <SESSION 1>
+#<2019081, 2013495, 2017997, 2017248>
+
+print("Welcome to total and average calculator")
+
+print("Please insert the first number: ")
+a = int(input())
+
+print("Insert the second number: ")
+b = int(input())
+
+c = a + b
+d = c/2
+
+print("Your input was ", a, b)
+print("The calculated total of your input is ", c)
+print("The calculated average of your input is ", d)
