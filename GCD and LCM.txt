@@ -1,0 +1,35 @@
+#Calculating GCD and LCM
+
+def LCM(num1, num2):
+
+    #This if operation will search for the largest number to become the numerator
+
+    if num1 > num2:
+        uppernumber = num1
+    else:
+        uppernumber = num2
+
+    #This while loop will use the numerator to be divided by the input of users until it gets modulus of zero
+
+    while (True):
+        if ((uppernumber % num1 == 0) and (uppernumber % num2 == 0)):
+            lcm = uppernumber
+            break
+        uppernumber += 1                        #increment to satisfy if operation
+
+    return lcm
+
+def GCD(num1, num2):
+
+    return int((num1 * num2) / (LCM(num1, num2)))
+
+print("Insert First Value: ")
+firstvalue = int(input())
+
+print("Insert Second Value: ")
+secondvalue = int(input())
+
+print("The LCM is ", LCM(firstvalue, secondvalue))
+print("The GCD is ", GCD(firstvalue, secondvalue))
+
+
