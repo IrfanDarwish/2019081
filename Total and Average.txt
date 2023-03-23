@@ -1,0 +1,30 @@
+#Total and average with getting input from 2 users
+#<ECIE 3101> <SECTION 2> <SEMESTER 1 2022/2023> <SESSION 1>
+#<2019081, 2013495, 2017997, 2017248>
+
+print("Welcome to total and average calculator!")
+total = 0
+
+while(True):
+    try:
+        size = int(input("Enter the numbers you want to be entered: "))
+        if size < 0:
+            print("Invalid number entered. (Must be greater than zero)")
+        else:
+            break
+    except ValueError:
+            print("Input must be an integer")
+
+for i in range(size):
+    while (True):
+        try:
+            usinput = float(input("Enter input : "))
+            break
+        except ValueError:
+            print("Input must be an integer")
+    total += usinput
+
+average = total / size
+
+print("Total value of your input is: ", total)
+print(("Average of your input is: "), average)
