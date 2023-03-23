@@ -1,7 +1,8 @@
 #Printing 0 to 50 and tell user if odd or even
 #<ECIE 3101> <SECTION 2> <SEMESTER 1 2022/2023> <SESSION 1>
 #<2019081, 2013495, 2017997, 2017248>
-num = 0
+
+num = -1
 while num <= 49:
     num = num+1
     if num%2 == 0:
