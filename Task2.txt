@@ -1,0 +1,139 @@
+#Task 2
+#<ECIE 3101> <SECTION 2> <SEMESTER 1 2022/2023> <SESSION 1>
+#<2019081, 2013495, 2017997, 2017248>
+
+class Node:
+
+    def __init__(self, data=None, link=None):
+        self.data = data
+        self.link = link
+
+    def updateData(self,data):
+        self.data = data
+
+    def setLink(self,link):
+        self.link = link
+
+    def removeLink(self):
+        self.link = None
+
+    def getData(self):
+        return self.data
+
+    def getNext(self):
+        return self.link
+
+class linkedL:
+
+    def __init__(self):       #header set to none
+        self.head = None
+
+    def addToStart(self,data): #add node to start list
+        tempNode = Node(data)
+        tempNode.setLink(self.head)
+        self.head = tempNode
+        del tempNode
+
+    #Display the LL
+    def displaylist(self):
+        current = self.head
+        if current is None:
+            print("The linked list is empty")
+        else:
+            while current:
+                print(current.getData(), end="")
+                current = current.getNext()
+                if current:
+                    print("-->", end=" ") #end for new line
+        print() #get new line
+        del current
+
+    def countOdd(self):
+        current = self.head
+        oddcounter = 0
+        while current is not None:
+            if current.getData() % 2 != 0:
+                oddcounter += 1
+            current = current.getNext()
+        if oddcounter == 0:
+            print("No odd number is found")
+        return oddcounter
+
+
+    def countEven(self):
+        current = self.head
+        evencounter = 0
+        while current is not None:
+            if current.getData() % 2 == 0:
+                evencounter += 1
+            current = current.getNext()
+        if evencounter == 0:
+            print("No even number is found")
+        return evencounter
+
+    def swap(self, index1, index2):
+        if index1 == index2:
+            print("Index are the same for" , index1, index2)
+            return
+
+        # Find the nodes to be swapped
+        previdx1 = None
+        node1 = self.head
+        for i in range(index1 - 1):
+            if node1 is None:
+                return
+            previdx1 = node1
+            node1 = node1.getNext()
+
+        previdx2 = None
+        node2 = self.head
+        for i in range(index2 - 1):
+            if node2 is None:
+                return
+            previdx2 = node2
+            node2 = node2.getNext()
+
+        # Swap the nodes
+        if previdx1 is not None:
+            previdx1.setLink(node2)
+        else:
+            self.head = node2
+
+        if previdx2 is not None:
+            previdx2.setLink(node1)
+        else:
+            self.head = node1
+
+        temp = node1.getNext()
+        node1.setLink(node2.getNext())
+        node2.setLink(temp)
+
+
+
+
+list = linkedL()
+list.addToStart(10)
+list.addToStart(20)
+list.addToStart(45)
+list.addToStart(35)
+list.addToStart(15)
+
+list.displaylist()
+print("Initial odd number is ", list.countOdd())
+print("Initial even number is ", list.countEven())
+
+list.addToStart(30)
+list.addToStart(40)
+list.displaylist()
+print("Total odd number is ", list.countOdd())
+print("Total even number is ", list.countEven())
+
+list.swap(1,5)
+list.displaylist()
+
+list.swap(2,3)
+list.displaylist()
+
+list.swap(7,4)
+list.displaylist()
+
