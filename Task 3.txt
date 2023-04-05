@@ -1,6 +1,3 @@
-
-
-
 #NODE CLASS
 class Node:
     def __init__(self, data=None, link=None): # Constructor
@@ -101,7 +98,6 @@ def reverseList(nonempty_list, empty_list):
 
 
 # Test
-''' Passed
 listA = LL()
 listA.push('P')
 listA.push('Y')
@@ -111,9 +107,7 @@ listA.push('O')
 listA.enqueue('N')
 listA.displayList()
 print(listA.count())
-'''
 
-''' Passed
 listA = LL()
 listA.push('I')
 listA.enqueue('L')
@@ -131,9 +125,7 @@ listA.displayList()
 arrayA = convertToArray(listA)
 listA.displayList()
 print(arrayA)
-'''
 
-''' Passed
 listA = LL()
 listB = LL()
 listA.push('I')
