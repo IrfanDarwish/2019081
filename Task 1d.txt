@@ -1,0 +1,21 @@
+#calculating hypotenues of right angle triangle
+import math
+
+def hypotenues(height, base):
+
+    hypo = math.sqrt(height**2 + base**2)
+
+    return hypo
+
+while(True):
+    try:
+        h = int(input("Enter the height value: "))
+        print("You entered:", h)
+        b = int(input("Enter the base value: "))
+        print("You entered: ", b)
+        break
+    except ValueError:
+        print("Invalid integer value")
+
+
+print("The calculated hypotenues of value ", h, "and", b, "is ", hypotenues(h,b))
