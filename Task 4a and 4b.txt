@@ -1,0 +1,111 @@
+#Task 4a and 4b
+
+class HashTable:
+    # INIITIAL THE HASHTABLE
+    def __init__(self,size):
+        self.size = size
+        self.keys = [None] * size
+        self.values = [None] * size
+
+    # HASHING FUNCTIONS
+    def hash(self,key):
+        return key % self.size
+
+    def rehash(self,key):
+        return (key + 1) % self.size
+
+    # GET THE DATA USING THE KEY
+    def get(self,key):
+        index = self.hash(key)
+
+        # IF THE KEY IS FOUND IMMEDIATELY
+        if self.keys[index] == key:
+            return self.values[index]
+        else:
+            # GOING THROUGH THE TABLE TO FIND THE KEY
+            oghash = index
+            index = self.rehash(index)
+            while index is not oghash:
+                if self.keys[index] == key:
+                    return self.values[index]
+                else:
+                    return None
+
+    def __getitem__(self,key):
+        return self.get(key)
+
+    # PUT THE ITEM INTO THE HASH TABLE
+    def put(self,key,value):
+        index = self.hash(key)
+
+        # IF THE INDEX POSITION HAS NO KEY OR THE SAME KEY REQUESTED
+        if self.keys[index] is None or self.keys[index] is key:
+            self.keys[index] = key
+            self.values[index] = value
+            return
+        else:
+            # GOING THROUGH THE TABLE TO FIND THE EMPTY SPOT OR THE KEY
+            oghash = index
+            index = self.rehash(index)
+            while index is not oghash:
+                if self.keys[index] is None or self.keys[index] is key:
+                    self.keys[index] = key
+                    self.values[index] = value
+                    return
+                else:
+                    index = self.rehash(index)
+            # IF THE TABLE IS ALREADY FULL
+            print("The hash table is already full")
+
+    def __setitem__(self,key,value):
+        self.put(key,value)
+
+class HT(HashTable):
+    def __init__(self, size = 5):
+        super().__init__(size)
+
+    def hash(self, key):
+        if isinstance(key, str):
+            letter = ord(key[0].lower()) - 96
+            return letter % self.size
+        else:
+            print("Key is not a string")
+            return
+
+    def delete(self, key):
+        index = 0
+        for i in self.keys:
+            if i == key:
+                self.values[index] = None
+                self.keys[index] = None  # delete key
+                return
+            index += 1
+        print("Key doesn't exist in the Hash table")
+        return
+
+
+# testing code
+hash = HT()
+hash['name'] = 'Zikri'
+hash['age'] = 20
+hash['gender'] = 'M'
+
+print(hash['name'])
+print(hash['age'])
+print(hash['gender'])
+print(hash.keys)
+print(hash.values)
+
+hash['birthdate'] = '4/12/2003'
+print(hash.keys)
+print(hash.values)
+print(hash['birthdate'])
+
+hash['name'] = 'Hakim'
+print(hash['name'])
+
+hash.delete('age')
+print(hash.keys)
+print(hash.values)
+print(hash['age'])
+print(hash['birthdate'])
