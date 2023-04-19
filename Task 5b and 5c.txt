@@ -1,0 +1,97 @@
+#Task 5b and 5c
+
+class Node:
+
+    def __init__(self, val):
+        self.val = val
+        self.left = None #refers to left branch
+        self.right = None #refers to right branch
+
+    def deepestBranch(self): #task 5c
+        if self.left is None and self.right is None:
+            print(f"\nTree's max depth is 0\n{self.val}")
+            return self.val, 0
+
+        longest_path = f"{self.val}"
+        max_depth = 0
+
+        def recur(node, path, depth):
+            nonlocal longest_path, max_depth
+            path += f" --> {node.val}"
+            depth += 1
+
+            if node.left:
+                recur(node.left, path, depth)
+            if node.right:
+                recur(node.right, path, depth)
+
+            if node.left is None and node.right is None:
+                if depth > max_depth:
+                    max_depth = depth
+                    longest_path = path
+
+        if self.left:
+            recur(self.left, f"{self.val}", 1)
+        if self.right:
+            recur(self.right, f"{self.val}", 1)
+
+        print(f"\nTree's max depth is {max_depth}\n{longest_path}")
+        return longest_path
+
+    def printPreorder(self):
+        if self:
+            print("-->", self.val, end=" ")
+            if self.left:
+                self.left.printPreorder()
+            if self.right:
+                self.right.printPreorder()
+
+    def printInorder(self):
+        if self:
+            if self.left:
+                self.left.printInorder()
+            print("-->", self.val, end=" ")
+            if self.right:
+                self.right.printInorder()
+
+    def printPostorder(self):
+        if self:
+            if self.left:
+                self.left.printPostorder()
+            if self.right:
+                self.right.printPostorder()
+            print("-->", self.val, end=" ")
+
+def insertSort(node,val): #Task 5b
+    if node is None:
+        return Node(val)
+    else:
+        if node.val is val:
+            return node
+        elif node.val < val:
+            node.right = insertSort(node.right, val)
+        else:
+            node.left = insertSort(node.left, val)
+    return node
+
+# Testing Code
+root = Node('Haziman Sairin')
+insertSort(root,'Zikri Hakim')
+insertSort(root,'Jameel Majdi')
+insertSort(root,'Raniya Waleed')
+insertSort(root,'Syukri Talib')
+insertSort(root,'Saif al-Din')
+insertSort(root,'Nuqman Aliff')
+insertSort(root,'Amir Su\'ad')
+insertSort(root,'Abd al-Karim Mumtaz')
+insertSort(root,'Dania Izzah')
+insertSort(root,'Zharif Aiman')
+insertSort(root,'Sharifa Harun')
+insertSort(root,'Fuad Najma')
+print("Preorder: ")
+root.printPreorder()
+print("\nInorder: ")
+root.printInorder()
+print("\nPostorder: ")
+root.printPostorder()
+root.deepestBranch()
